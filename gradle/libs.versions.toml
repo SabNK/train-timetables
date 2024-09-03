@@ -1,0 +1,19 @@
+[versions]
+java = "17" #see PS-111
+kotlin = "1.9.22" #see PS-111
+junit = "5.11.0"
+serenity = "4.1.14"
+
+[libraries]
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
+junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+serenity-core = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+
+
+[bundles]
+junit = ["junit-jupiter", "junit-engine"]
+
+[plugins]
+#local.jvm.app && local.jvm.lib
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+serenity = { id = "net.serenity-bdd.serenity-gradle-plugin", version.ref = "serenity"}
