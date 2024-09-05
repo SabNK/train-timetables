@@ -7,11 +7,13 @@ serenity = "4.1.14"
 [libraries]
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
-serenity-core = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+junit-vintage = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+junit-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit" }
+serenity-core = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit" }
 
 
 [bundles]
-junit = ["junit-jupiter", "junit-engine"]
+junit = ["junit-jupiter", "junit-vintage", "junit-params"]
 
 [plugins]
 #local.jvm.app && local.jvm.lib

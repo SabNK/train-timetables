@@ -15,7 +15,7 @@ val logback_classic_version = "1.5.7"
 val assertj_core_version = "3.26.3"
 
 dependencies {
-    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.bundles.junit)
     testRuntimeOnly (libs.junit.engine)
     testImplementation ("net.serenity-bdd:serenity-core:${serenity_version}")
     testImplementation ("net.serenity-bdd:serenity-cucumber:${serenity_version}")
@@ -24,6 +24,7 @@ dependencies {
     testImplementation ("net.serenity-bdd:serenity-ensure:${serenity_version}")
 
     testImplementation ("org.junit.platform:junit-platform-suite:${junit_platform_suite_version}")
+    testCompileOnly("junit:junit:4.13.2")
     testImplementation ("io.cucumber:cucumber-junit-platform-engine:${cucumber_junit_platform_engine_version}")
 
     implementation ("ch.qos.logback:logback-classic:${logback_classic_version}")
