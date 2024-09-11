@@ -11,7 +11,7 @@ data class ItineraryService(val timetable: TimeTable) {
         val lines = timetable.findLinesThrough(from, to)
 
         return lines
-            .flatMap { timetable.getDepartures("", it) }
+            .flatMap { timetable.getDepartures(it, from) }
             .filter{ it.isAfter(departureTime)}
             .sorted()
             .take(2)
@@ -35,12 +35,17 @@ class CustomTimeTable(val departures: List<LocalTime>): TimeTable {
 class InMemoryTimeTable: TimeTable, CanScheduleServices{
     val schedules = HashMap<String, ScheduledService>()
     override fun findLinesThrough(from: String, to: String): List<String> {
-        return schedules.entries.filter { with(it.value){departure == from && destination == to}}
+        val result = schedules.entries.filter { with(it.value){departure == from && destination == to}}
             .map{ it.key}
+        //println("++++++++++++++++++ result: $result")
+        return result
     }
 
     override fun getDepartures(line: String, station: String): Iterable<LocalTime> {
-        return emptyList()
+        if (line in schedules.keys) {
+            return schedules[line]!!.departingAt
+        }
+        else throw UnknownLineException("No line found: $line")
     }
 
     override fun scheduleService(line: String, departingAt: List<LocalTime>, departure: String, destination: String) {
@@ -62,4 +67,6 @@ interface CanScheduleServices {
         destination: String
     )
 }
+
+class UnknownLineException(override val message: String): RuntimeException(message)
 
