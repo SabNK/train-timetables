@@ -29,6 +29,7 @@ dependencies {
 
     implementation ("ch.qos.logback:logback-classic:${logback_classic_version}")
     testImplementation ("org.assertj:assertj-core:${assertj_core_version}")
+    implementation("org.casbin:jcasbin:1.55.0")
 
 }
 
