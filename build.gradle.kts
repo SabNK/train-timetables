@@ -30,6 +30,8 @@ dependencies {
     implementation ("ch.qos.logback:logback-classic:${logback_classic_version}")
     testImplementation ("org.assertj:assertj-core:${assertj_core_version}")
     implementation("org.casbin:jcasbin:1.55.0")
+    implementation("com.trendyol:kediatr-core:3.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
 
 }
 
