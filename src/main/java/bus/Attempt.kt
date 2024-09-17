@@ -33,7 +33,7 @@ fun main() {
     val provider = ManualDependencyProvider(handlers)
     val mediator: Mediator = MediatorBuilder(provider).build()
     runBlocking {
-        mediator.send(PingCommand()) // 1..1
+        mediator.send(PingCommand(UUID.randomUUID())) // 1..1
         mediator.send(PingQuery()) // 1..1
         mediator.publish(PingNotification()) // 0..N
 
@@ -41,10 +41,12 @@ fun main() {
 
 
 }
+/*
 val res = javaClass.classLoader.getResource("abacs2")
 val folder = Paths.get(res.toURI()).toAbsolutePath().toString()
 val e = Enforcer("$folder/model.conf", "$folder/policy.csv")
 val userId = UUID.fromString("123")
+*/
 
 data class ABACObject(val entityId: UUID, val attributes: List<String>)
 
@@ -66,7 +68,7 @@ class UpdatePoleAttributeCmdHandler: CommandHandler<UpdatePoleAttributeCmd> {
 }
 
 
-class PermissionPipelineBehaviour: PipelineBehavior  {
+/*class PermissionPipelineBehaviour: PipelineBehavior  {
     override suspend fun <TRequest, TResponse> handle(
         request: TRequest,
         next: RequestHandlerDelegate<TRequest, TResponse>
@@ -79,11 +81,11 @@ class PermissionPipelineBehaviour: PipelineBehavior  {
             is PrivelegedCommand -> checkPriveleges(userId, request.obj, request.action)
             else -> true
         }
-        val response = if (proceed) next(request) else notification
+        val response = if (proceed) next(request) else next(request) //notification
 
         return response
     }
-}
+}*/
 
 data class PingCommand(val pingId: UUID  ): Command // or
 class PingQuery: Query<String> // or
@@ -132,4 +134,4 @@ class HaHaHaPipelineBehaviour: PipelineBehavior  {
 
 interface IPipeline1
 
-class FooBehavior<TRequest, TResponse> : PipelineBehavior<TRequest, TResponse> { }
+//class FooBehavior<TRequest, TResponse> : PipelineBehavior<TRequest, TResponse> { }
