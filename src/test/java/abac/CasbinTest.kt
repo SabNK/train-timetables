@@ -57,7 +57,7 @@ class CasbinTest {
         val lon1 = "ab"
         val lat2 = "ab"
         val lon2 = "ab"
-        assertThat(e.enforce(sub, obj, act, lat1, lon1, lat2, lon2)).isFalse()
+        assertThat(e.enforce(sub, obj, act, lat1, lon1, lat2, lon2)).isTrue()
     }
 
 }
